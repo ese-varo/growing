@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'letter_opener'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 4.1.0'
 end
 
 group :development do
@@ -52,6 +54,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'shoulda-matchers', '~> 4.5', '>= 4.5.1'
+  gem 'faker', '~> 2.16'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'rexml', '~> 3.2', '>= 3.2.4'
+  gem 'simplecov', '~> 0.21.2'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
