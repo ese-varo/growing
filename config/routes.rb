@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
-  resources :habits, only: %i[index]
+  resources :habits, only: %i[index create show]
 end
