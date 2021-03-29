@@ -1,4 +1,6 @@
 class HabitsController < ApplicationController
+  before_action :set_habit, only: %i[show]
+
   def index
     @habit = Habit.new
   end
@@ -11,6 +13,13 @@ class HabitsController < ApplicationController
     else
       render :index
     end
+  end
+
+  def show
+  end
+
+  def set_habit
+    @habit = Habit.find(params[:id])
   end
 
   def end_date_param
