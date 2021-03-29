@@ -1,0 +1,12 @@
+= form_with model: @habit do |form|
+  %div
+    = form.label :name, class: "form-label"
+    = form.text_field :name, class: "form-control", required: true
+    = form.label :description, class: "form-label"
+    = form.text_field :description, class: "form-control", required: true
+    = form.label :start_date, class: "form-label mt-4"
+    = form.date_field :start_date, class: "form-control", required: true
+    = form.label :quantity, class: "form-label"
+    = form.number_field :quantity, in: 21..66, class: "form-control", required: true 
+  %div
+    = form.submit 'Create habit', class: 'btn btn-primary my-4'

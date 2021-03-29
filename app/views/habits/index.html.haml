@@ -1,0 +1,12 @@
+%button.btn.btn-primary{ 'type': "button", 'data-bs-toggle': "modal", 'data-bs-target': "#staticBackdrop"} Add New Habit
+
+.modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel>Modal title
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form', habit: @habit
+      .modal-footer
+        %button.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
