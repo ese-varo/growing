@@ -1,0 +1,45 @@
+.row.justify-content-center
+  .col-6
+    %h2 Sign up
+    =form_for resource, as: resource_name, url: registration_path(resource_name), class: 'col-6' do |f|
+      =render 'devise/shared/error_messages', resource: resource
+
+      .field
+        =f.label :first_name, class: 'form-label'
+        %br
+        =f.text_field :first_name, autofocus: true, autocomplete: 'first-name', required: true, class: 'form-control'
+
+      .field
+        =f.label :last_name, class: 'form-label'
+        %br
+        =f.text_field :last_name, autocomplete: 'last-name', required: true, class: 'form-control'
+
+      .field
+        =f.label :phone, class: 'form-label'
+        %br
+        =f.text_field :phone, autocomplete: 'phone', required: true,
+          pattern: '[0-9]{10}', placeholder: '1231231234', class: 'form-control'
+
+      .field
+        =f.label :email, class: 'form-label'
+        %br
+        =f.email_field :email, autocomplete: 'email', required: true, class: 'form-control'
+
+      .field
+        =f.label :password, class: 'form-label'
+        - if @minimum_password_length
+          %em (
+          =@minimum_password_length
+          chracters minimum)
+          %br
+        =f.password_field :password, autocomplete: 'new-password', required: true, class: 'form-control'
+
+      .field
+        =f.label :password_confirmation, class: 'form-label'
+        %br
+        =f.password_field :password_confirmation, autocomplete: 'new-password', required: true, class: 'form-control'
+
+      .actions
+        =f.submit 'Sign up', class: 'btn btn-primary mt-4'
+
+    =render 'devise/shared/links'

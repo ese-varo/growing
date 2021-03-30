@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <p class="notice alert alert-primary alert-dismissible fade show"><%= notice %></p>
-    <p class="alert alert-danger"><%= alert %></p>
-    <%= yield %>
+    <div class='container'>
+      <p class="notice alert alert-primary alert-dismissible fade show"><%= notice %></p>
+      <p class="alert alert-danger"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
