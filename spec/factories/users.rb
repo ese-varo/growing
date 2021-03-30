@@ -5,6 +5,6 @@ FactoryBot.define do
     password_confirmation { password } 
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    phone { Faker::Number.number(digits: 10) }
+    phone { Faker::PhoneNumber.cell_phone_in_e164 }
   end
 end

@@ -59,7 +59,7 @@ RSpec.feature 'User sign up' do
   scenario "unsuccessfully because passwords does not match", js: true do
     fill_in 'user_password_confirmation', with: Faker::Internet.password(min_length: 6)
     click_button 'Sign up'
-    expect(page).to have_content "Password confirmation doesn't match Password"
+    expect(page).to have_content "Password confirmation doesn't match Password", wait: 5
   end
 
   scenario "unsuccessfully because some field is blank", js: true do
@@ -71,8 +71,9 @@ RSpec.feature 'User sign up' do
 
   scenario "unsuccessfully because email is already taken", js: true do
     registered_user = create(:user)
+    fill_in 'user_phone', with: registered_user.phone
     fill_in 'user_email', with: registered_user.email
     click_button 'Sign up'
-    expect(page).to have_content "Email has already been taken"
+    expect(page).to have_content "Email has already been taken", wait: 5
   end
 end

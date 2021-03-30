@@ -26,6 +26,6 @@ RSpec.feature 'User login' do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: Faker::Internet.password(min_length: 6) 
     click_button 'Log in'
-    expect(page).to have_content "Invalid Email or assword"
+    expect(page).to have_content "Invalid Email or password"
   end
 end
