@@ -9,8 +9,10 @@ class HabitsController < ApplicationController
     @habit = Habit.create(habit_params)
 
     if @habit.valid?
+      flash[:success] = "Habit created successfully"
       redirect_to @habit 
     else
+      flash[:danger] = "Error habit not created"
       render :index
     end
   end
