@@ -8,5 +8,6 @@
         %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
       .modal-body
         = render 'form', habit: @habit
+        %small.text-muted A habit takes between 21 and 66 days to generate
       .modal-footer
         %button.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
