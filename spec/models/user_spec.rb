@@ -34,6 +34,21 @@ RSpec.describe User do
       user.valid?
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
+    it "when passwords is less than 6 characters long" do
+      invalid_user = build(:user, password: Faker::Internet.password(min_length: 1, max_length: 5))
+      invalid_user.valid?
+      expect(invalid_user.errors[:password]).to include("is too short (minimum is 6 characters)")
+    end
+    it "when phone number is less than 10 digits long" do
+      user.update_attribute :phone, Faker::Number.number(digits: 5) 
+      user.valid?
+      expect(user.errors[:phone]).to include("is the wrong length (should be 10 characters)")
+    end
+    it "when phone number is more than 10 digits long" do
+      user.update_attribute :phone, Faker::Number.number(digits: 15) 
+      user.valid?
+      expect(user.errors[:phone]).to include("is the wrong length (should be 10 characters)")
+    end
     it "if the email is already taken" do
       email = Faker::Internet.unique.safe_email 
       user_one = create(:user, email: email)
