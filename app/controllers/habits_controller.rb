@@ -7,7 +7,6 @@ class HabitsController < ApplicationController
 
   def create
     @habit = Habit.create(habit_params)
-
     if @habit.valid?
       flash[:success] = "Habit created successfully"
       redirect_to @habit 
@@ -25,10 +24,13 @@ class HabitsController < ApplicationController
   end
 
   def end_date_param
-    params[:habit][:start_date].to_date + params[:habit][:quantity].to_i.days
+    raise MissingAttributeError unless params[:habit][:habit_duration]
+    params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days
+    rescue
+      flash[:info] = "Invalid form"
   end
 
   def habit_params
-    params.require(:habit).permit(:name, :description, :start_date).merge(:end_date => end_date_param)
+    params.require(:habit).permit(:name, :description, :start_date).merge(end_date: end_date_param)
   end
 end

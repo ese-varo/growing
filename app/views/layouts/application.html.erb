@@ -12,8 +12,9 @@
 
   <body>
     <div class='container'>
-      <p class="notice alert alert-primary alert-dismissible fade show"><%= notice %></p>
-      <p class="alert alert-danger"><%= alert %></p>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+      <% end -%>
       <%= yield %>
     </div>
   </body>
