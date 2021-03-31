@@ -12,12 +12,12 @@ RSpec.describe "Habits", type: :request do
     context "with valid attributes"
       it "saves a habit in the database" do
         expect{
-          post habits_path, params: { habit: attributes_for(:habit) }
+          post habits_path, params: { habit: attributes_for(:habit).merge(habit_duration: rand(21..66)) }
         }.to change(Habit, :count).by(1)
       end
 
       it "redirects to habit#show" do
-        post habits_path, params: { habit: attributes_for(:habit) }
+        post habits_path, params: { habit: attributes_for(:habit).merge(habit_duration: rand(21..66))}
         expect(response).to redirect_to habit_path(assigns(:habit).id)
       end
     end

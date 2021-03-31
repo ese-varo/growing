@@ -11,7 +11,7 @@ RSpec.feature "CreateNewHabits", type: :feature do
     fill_in 'Name', with: habit[:name]
     fill_in 'Description', with: habit[:description]
     fill_in 'Start date', with: habit[:start_date]
-    fill_in 'Quantity', with: rand(21..66)
+    fill_in 'Habit duration', with: rand(22..66)
     click_button 'Create habit'
     expect(page).to have_content habit[:name]
   end
@@ -24,7 +24,7 @@ RSpec.feature "CreateNewHabits", type: :feature do
     fill_in 'Name', with: ''
     fill_in 'Description', with: habit[:description]
     fill_in 'Start date', with: habit[:start_date]
-    fill_in 'Quantity', with: rand(21..66)
+    fill_in 'Habit duration', with: rand(21..66)
     click_button 'Create habit'
     message = page.find("#habit_name").native.attribute("validationMessage")
     expect(message).to eq "Please fill out this field."
@@ -38,7 +38,7 @@ RSpec.feature "CreateNewHabits", type: :feature do
     fill_in 'Name', with: habit[:name]
     fill_in 'Description', with: nil
     fill_in 'Start date', with: habit[:start_date]
-    fill_in 'Quantity', with: rand(21..66)
+    fill_in 'Habit duration', with: rand(21..66)
     click_button 'Create habit'
     message = page.find("#habit_description").native.attribute("validationMessage")
     expect(message).to eq "Please fill out this field."
@@ -52,7 +52,7 @@ RSpec.feature "CreateNewHabits", type: :feature do
     fill_in 'Name', with: habit[:name]
     fill_in 'Description', with: habit[:description]
     fill_in 'Start date', with: nil
-    fill_in 'Quantity', with: rand(21..66)
+    fill_in 'Habit duration', with: rand(21..66)
     click_button 'Create habit'
     message = page.find("#habit_start_date").native.attribute("validationMessage")
     expect(message).to eq "Please fill out this field."
@@ -66,9 +66,9 @@ RSpec.feature "CreateNewHabits", type: :feature do
     fill_in 'Name', with: habit[:name]
     fill_in 'Description', with: habit[:description]
     fill_in 'Start date', with: habit[:start_date]
-    fill_in 'Quantity', with: nil
+    fill_in 'Habit duration', with: nil
     click_button 'Create habit'
-    message = page.find("#habit_quantity").native.attribute("validationMessage")
+    message = page.find("#habit_habit_duration").native.attribute("validationMessage")
     expect(message).to eq "Please fill out this field."
   end
 
