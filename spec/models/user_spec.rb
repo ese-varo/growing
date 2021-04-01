@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe User do
   let(:user) { build(:user) }
 
+  describe 'associations' do
+    it { should have_many(:habits) }
+  end
+  
   describe "is invalid" do
     it "without email" do
       user.update_attribute :email, ""
@@ -44,10 +48,10 @@ RSpec.describe User do
       user.valid?
       expect(user.errors[:phone]).to include("is too short (minimum is 13 characters)")
     end
-    it "when phone number is more than 15 digits long" do
+    it "when phone number is more than 16 digits long" do
       user.update_attribute :phone, Faker::Number.number(digits: 17) 
       user.valid?
-      expect(user.errors[:phone]).to include("is too long (maximum is 15 characters)")
+      expect(user.errors[:phone]).to include("is too long (maximum is 16 characters)")
     end
     it "if the email is already taken" do
       email = Faker::Internet.unique.safe_email 

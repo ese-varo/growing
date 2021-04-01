@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Habit, type: :model do
   subject { create(:habit) }
-  
+
   describe 'associations' do
-    xit { should belong_to(:user) }
+    it { should belong_to(:user) }
   end
 
   describe 'validations' do

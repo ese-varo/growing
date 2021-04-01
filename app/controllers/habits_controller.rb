@@ -1,4 +1,5 @@
 class HabitsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_habit, only: %i[show]
 
   def index
@@ -6,7 +7,7 @@ class HabitsController < ApplicationController
   end
 
   def create
-    @habit = Habit.create(habit_params)
+    @habit = current_user.habits.create(habit_params)
     if @habit.valid?
       flash[:success] = "Habit created successfully"
       redirect_to @habit 
