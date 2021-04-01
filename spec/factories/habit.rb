@@ -5,5 +5,6 @@ FactoryBot.define do
     start_date { Date.today }
     end_date { Faker::Date.forward(days:35) }
     status { false }
+    association :user
   end
 end
