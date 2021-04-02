@@ -1,5 +1,15 @@
-%p= @habit.name
-%p= @habit.description
-%p= @habit.start_date
-%p= @habit.end_date
-%p= @habit.status
+.card.mt-4.p-3
+  .card-body
+    %h4.card-title= "Habito: #{@habit.name}"
+    %h6.card-subtitle.mb-2.text-muted= @habit.description
+    .row.mt-4
+      %p.col-6.text-center= "Inicio: #{@habit.start_date.to_s(:long)}"
+      %p.col-6.text-center= "Fin: #{@habit.end_date.to_s(:long)}"
+    .d-flex.justify-content-center.flex-wrap
+      #calendarContainer
+      #organizerContainer
+= link_to "Get back to main page", habits_path
+
+= javascript_include_tag "https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.js"
+= stylesheet_link_tag "https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css"
+= javascript_pack_tag 'calendar-habit', 'data-turbolinks-track': 'reload'
