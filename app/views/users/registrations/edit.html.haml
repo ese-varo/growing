@@ -32,7 +32,7 @@
         =f.label :password, class: 'form-label'
         %i (leave blank if you don't want to change it)
         %br
-        =f.password_field :password, autocomplete: "new-password", class: 'form-control'
+        =f.password_field :password, pattern: '[^]{6,}', autocomplete: "new-password", class: 'form-control'
         - if @minimum_password_length
           %br
           %em #{@minimum_password_length} characters minimum
@@ -40,13 +40,13 @@
       .field
         =f.label :password_confirmation, class: 'form-label'
         %br
-        =f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+        =f.password_field :password_confirmation, pattern: '[^]{6,}', autocomplete: "new-password", class: 'form-control'
 
       .field
         =f.label :current_password, class: 'form-label'
         %i (we need your current password to confirm your changes)
         %br
-        =f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control'
+        =f.password_field :current_password, pattern: '[^]{6,}', autocomplete: "current-password", required: true, class: 'form-control'
 
       .actions
         =f.submit "Update", class: 'btn btn-primary mt-4 mb-4'
