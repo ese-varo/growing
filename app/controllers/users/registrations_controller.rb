@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   def show
-    @user = current_user
+    redirect_to new_user_session_path, alert: "You must be logged in" unless @user = current_user
   end
 
   protected
