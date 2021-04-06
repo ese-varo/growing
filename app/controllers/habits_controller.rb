@@ -4,21 +4,21 @@ class HabitsController < ApplicationController
 
   def index
     @habit = Habit.new
+    @habits = HabitsQuery.new(current_user.habits)
   end
 
   def create
     @habit = current_user.habits.create(habit_params)
     if @habit.valid?
-      flash[:success] = "Habit created successfully"
-      redirect_to @habit 
+      flash[:success] = 'Habit created successfully'
+      redirect_to @habit
     else
-      flash[:danger] = "Error habit not created"
-      render :index
+      flash[:danger] = 'Error habit not created'
+      redirect_to habits_path
     end
   end
 
-  def show
-  end
+  def show; end
 
   def set_habit
     @habit = Habit.find(params[:id])
@@ -26,9 +26,10 @@ class HabitsController < ApplicationController
 
   def end_date_param
     raise MissingAttributeError unless params[:habit][:habit_duration]
+
     params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days
-    rescue
-      flash[:info] = "Invalid form"
+  rescue StandardError
+    flash[:info] = 'Invalid form'
   end
 
   def habit_params
