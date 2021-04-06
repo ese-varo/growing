@@ -3,9 +3,3 @@
 - if user_signed_in?
   Welcome to growing!
   %br
-  =link_to 'Sign out', destroy_user_session_path, method: :delete,
-                       class: 'btn btn-secondary'
-  =link_to 'Profile', profile_path, class: 'btn btn-secondary'
-- else
-  =link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary'
-  =link_to 'Log in', new_user_session_path, class: 'btn btn-secondary'
