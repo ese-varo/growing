@@ -1,12 +1,18 @@
 %nav.navbar.navbar-light.navbar-expand-lg{ style: "background-color: rgb(41,42,123)"}
   %div.container-fluid
+<<<<<<< HEAD
     =link_to "Growing 🧘", root_path, class: "navbar-brand text-nowrap", id: "nav-logo"
     %div.navbar-collapse
+=======
+    =link_to "Growing 🧘", root_path, class: "navbar-brand text-nowrap"
+    %div.collapse.navbar-collapse
+>>>>>>> d04d1c1 (Add main navbar to application)
       %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
       - if user_signed_in?
         %li.nav-item.m-2 
           =link_to "Habits", habits_path, class: "text-nowrap"
         %li.nav-item.m-2 
+<<<<<<< HEAD
           =link_to "Profile", profile_path, class: "text-nowrap"
         %li.nav-item.m-2
           =link_to "Sign out", destroy_user_session_path,
@@ -16,3 +22,13 @@
           =link_to 'Sign up', new_user_registration_path, class: "text-nowrap", id: "nav-sign-up"
         %li.nav-item.m-2
           =link_to 'Log in', new_user_session_path, class: "text-nowrap", id: "nav-log-in"
+=======
+          =link_to "Profile", edit_user_registration_path, class: "text-nowrap"
+        %li.nav-item.m-2
+          =link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-nowrap"
+      - else
+        %li.nav-item.m-2
+          =link_to 'Sign up', new_user_registration_path, class: "text-nowrap"
+        %li.nav-item.m-2
+          =link_to 'Log in', new_user_session_path, class: "text-nowrap"
+>>>>>>> d04d1c1 (Add main navbar to application)
