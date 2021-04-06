@@ -11,6 +11,14 @@ RSpec.describe "Habits", type: :request do
     end
   end
 
+  describe "GET /habits/:id" do
+    it "returns a http success" do
+      habit = create(:habit)
+      get habit_path(habit.id)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "POST /habits" do
     context "with valid attributes"
       it "saves a habit in the database" do
