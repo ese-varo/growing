@@ -43,10 +43,10 @@ RSpec.describe User do
       invalid_user.valid?
       expect(invalid_user.errors[:password]).to include("is too short (minimum is 6 characters)")
     end
-    it "when phone number is less than 13 digits long" do
+    it "when phone number is less than 12 digits long" do
       user.update_attribute :phone, Faker::Number.number(digits: 5) 
       user.valid?
-      expect(user.errors[:phone]).to include("is too short (minimum is 13 characters)")
+      expect(user.errors[:phone]).to include("is too short (minimum is 12 characters)")
     end
     it "when phone number is more than 16 digits long" do
       user.update_attribute :phone, Faker::Number.number(digits: 17) 
