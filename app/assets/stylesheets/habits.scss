@@ -6,3 +6,61 @@
   float: left;
   margin: 5px;
 }
+
+.tooltip > .tooltip-inner {
+  background-color: #ededed;
+  border-color: #ededed;
+  color: #292c7b;
+}
+
+.tooltip {
+  overflow: auto;
+}
+
+.timeline {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  height: 100px;
+}
+
+.timeline-item {
+  transition: all 200ms ease-in;
+}
+
+.checkpoint {
+  border-top: 3px solid #e8425a;
+  display: flex;
+  justify-content: center;
+  padding: 0px 20px;
+  position: relative;
+  transition: all 200ms ease-in;
+  &:hover:before {
+    background-color: #292c7b;
+  }
+}
+
+.checkpoint:before {
+  background-color: #e8425a;
+  border-radius: 25px;
+  border: 1px solid #ededed;
+  content: '';
+  height: 25px;
+  position: absolute;
+  top: -15px;
+  transition: all 200ms ease-in;
+  width: 25px;
+}
+
+.timeline-item.complete .checkpoint {
+  border-top: 3px solid #292c7b;
+  &:hover:before {
+    background-color: #ededed;
+  }
+}
+.timeline-item.complete .checkpoint:before {
+  background-color: #292c7b;
+  border: none;
+  transition: all 200ms ease-in;
+}
