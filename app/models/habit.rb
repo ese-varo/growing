@@ -10,6 +10,7 @@ class Habit < ApplicationRecord
   
   def end_date_format
     self.end_date.to_s(:long) 
+  end
   private
 
   def add_days
