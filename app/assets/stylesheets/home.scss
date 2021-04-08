@@ -1,3 +1,23 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+body a:hover {
+  color: rgb(222, 222, 222);
+}
+
+body li {
+  list-style-type: none;
+}
+
+body .btn-primary{
+  background-color: rgb(232, 66, 90);
+}
+
+body .btn-primary:hover{
+  background-color: rgb(194, 54, 73);
+}
