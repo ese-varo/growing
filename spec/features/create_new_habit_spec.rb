@@ -19,6 +19,21 @@ RSpec.feature "CreateNewHabits", type: :feature do
       expect(page).to have_content habit[:name]
     end
 
+    scenario "a new habit has to show you the details of the habit" do 
+      visit habits_path
+      click_button 'Add New Habit'
+      expect(page).to have_content 'Create a new habit'
+
+      fill_in 'Name', with: habit[:name]
+      fill_in 'Description', with: habit[:description]
+      fill_in 'Start date', with: habit[:start_date]
+      fill_in 'Habit duration', with: rand(22..66)
+      click_button 'Create habit'
+      expect(page).to have_content habit[:name]
+      expect(page).to have_content habit[:description]
+      expect(page).to have_content habit[:start_date].to_s(:long)
+    end 
+
     scenario "create a new habit with an invalid name", js: true do
       visit habits_path
       click_button 'Add New Habit'

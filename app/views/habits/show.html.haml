@@ -1,5 +1,11 @@
-%p= @habit.name
-%p= @habit.description
-%p= @habit.start_date
-%p= @habit.end_date
-%p= @habit.status
+.card.mt-4.p-3
+  .card-body
+    %h4.card-title= "Habit: #{@habit.name}"
+    %h6.card-subtitle.mb-2.text-muted= @habit.description
+    .row.mt-4
+      %p.col-6.text-center= "Start: #{@habit.start_date_format}"
+      %p.col-6.text-center= "End: #{@habit.end_date_format}"
+    .d-flex.justify-content-center.flex-wrap
+      #calendarContainer
+      #organizerContainer
+= link_to "Get back to main page", habits_path
