@@ -1,0 +1,26 @@
+container = document.getElementById("note");
+note = document.getElementById("note-description");
+buttonFlag = document.getElementById("add-note-btn");
+formNote = document.getElementById("form-note");
+if("<%= @note %>") {
+  note.innerText = "<%= @note.description if @note %>";
+  if (buttonFlag) {
+    buttonFlag.remove();
+  }
+} else {
+  note.innerText = "You don't have a note yet"
+  formNote.action = `/days/${<%= @day_habit.id %>}/note`;
+  if (!buttonFlag) {
+    container.appendChild(createButonNote());
+  }
+}
+
+function createButonNote() {
+  let button = document.createElement("button");
+  button.id = "add-note-btn"
+  button.className = "btn btn-primary";
+  button.setAttribute('data-bs-toggle', "modal");
+  button.setAttribute('data-bs-target', "#staticBackdrop");
+  button.innerText = "Add a note";
+  return button;
+}

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'users/registrations#show'
   end
   resources :habits, only: %i[index create show]
-  resources :days
+  resources :days do
+    resources :note
+  end
 end
