@@ -5,7 +5,19 @@
     .row.mt-4
       %p.col-6.text-center= "Start: #{@habit.start_date_format}"
       %p.col-6.text-center= "End: #{@habit.end_date_format}"
-    .d-flex.justify-content-center.flex-wrap
-      #calendarContainer
-      #organizerContainer
+    #calendarContainer.w-100
+      - month = @habit.days.first.date.strftime('%B')
+      %h5.month= month
+      - @habit.days.each do |day|
+        - unless day.date.strftime('%B') == month
+          %h5.month= month = day.date.strftime('%B')
+        = link_to day.date.strftime('%d'), day, remote: true, class: 'day'
+    #organizerContainer
+    - if @habit.end_date >= Date.today
+      .note
+        %h6 Note
+        %p.note-description this is a note
+      .checkpoint
+        %h6 Checkpoint
+        %p.checkpoint-description this is a checkpoint
 = link_to "Get back to main page", habits_path

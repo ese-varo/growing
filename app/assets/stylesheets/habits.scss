@@ -3,8 +3,27 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 #calendarContainer,
 #organizerContainer {
-  float: left;
-  margin: 5px;
+  // float: left;
+  // margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.carousel-inner {
+  padding: 10%;
+}
+
+.day {
+  width: 60px;
+  height: 60px;
+}
+
+.month {
+  width: 100%;
+}
+
+.day:hover {
+  cursor: pointer;
 }
 
 .tooltip > .tooltip-inner {
