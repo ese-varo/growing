@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'profile', to: 'users/registrations#show'
   end
-  resources :habits, only: %i[index create show]
+  resources :habits, only: %i[index create show edit update]
   resources :days do
     resources :note, only: %i[create update]
     resources :checkpoint
