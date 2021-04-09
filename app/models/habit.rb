@@ -11,6 +11,11 @@ class Habit < ApplicationRecord
   def end_date_format
     self.end_date.to_s(:long) 
   end
+
+  def has_date(date)
+    (start_date..end_date).include?(date)
+  end
+
   private
 
   def add_days
