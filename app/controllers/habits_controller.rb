@@ -1,5 +1,6 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_habit, only: %i[show edit update]
 
   def index
     @habit = Habit.new
@@ -17,7 +18,21 @@ class HabitsController < ApplicationController
     end
   end
 
-  def show
+  def show; end
+
+  def edit; end
+
+  def update
+    if @habit.update(habit_params)
+      flash[:success] = 'Habit updated successfully'
+      redirect_to @habit
+    else
+      flash[:danger] = 'Error habit did not update'
+      redirect_to habits_path
+    end
+  end
+
+  def set_habit
     @habit = Habit.find(params[:id])
     @note = Note.new
     @day_habit = day_habit(@habit)
@@ -31,7 +46,11 @@ class HabitsController < ApplicationController
   def end_date_param
     raise MissingAttributeError unless params[:habit][:habit_duration]
 
-    params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days
+    if (params[:_method] === 'patch')
+      @habit.start_date.to_date + params[:habit][:habit_duration].to_i.days
+    else
+      params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days
+    end
   rescue StandardError
     flash[:info] = 'Invalid form'
   end
