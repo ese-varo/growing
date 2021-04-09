@@ -4,11 +4,12 @@ class NoteController < ApplicationController
     @note = Note.create(description: params[:description], noteable: day_habit)
     if @note.valid?
       flash[:success] = "Note saved"
+      respond_to do |format|
+        format.js
+      end
     else 
       flash[:danger] = "Note not saved"
-      respond_to do |format|
-        format.html
-      end
+      render habit_path(day_habit.habit_id)
     end
   end
 end

@@ -22,6 +22,7 @@ class HabitsController < ApplicationController
 
   def set_habit
     @habit = Habit.find(params[:id])
+    @note = Note.new
   end
 
   def end_date_param
