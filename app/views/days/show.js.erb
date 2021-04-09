@@ -1,18 +1,28 @@
 container = document.getElementById("note");
 note = document.getElementById("note-description");
-buttonFlag = document.getElementById("add-note-btn");
+addNoteButton = document.getElementById("add-note-btn");
+editNoteButton = document.getElementById("edit-note-btn");
 formNote = document.getElementById("form-note");
+formEditNote = document.getElementById("form-edit-note");
 if("<%= @note %>") {
   note.innerText = "<%= @note.description if @note %>";
-  if (buttonFlag) {
-    buttonFlag.remove();
+  formEditNote.action = '/days/' + "<%= @day_habit.id %>" + "/note/" + "<%= @note.id if @note %>";
+  formEditNote.setAttribute('data-remote', true);
+  if (!editNoteButton) {
+    container.appendChild(editButtonNote());
+  }
+  if (addNoteButton) {
+    addNoteButton.remove();
   }
 } else {
   note.innerText = "You don't have a note yet"
-  formNote.action = `/days/${<%= @day_habit.id %>}/note`;
+  formNote.action = "/days/" + "<%= @day_habit.id %>" + "/note";
   formNote.setAttribute('data-remote', true);
-  if (!buttonFlag) {
+  if (!addNoteButton) {
     container.appendChild(createButonNote());
+  }
+  if (editNoteButton) {
+    editNoteButton.remove();
   }
 }
 
@@ -23,5 +33,15 @@ function createButonNote() {
   button.setAttribute('data-bs-toggle', "modal");
   button.setAttribute('data-bs-target', "#staticBackdrop");
   button.innerText = "Add a note";
+  return button;
+}
+
+function editButtonNote() { 
+  let button = document.createElement("button");
+  button.id = "edit-note-btn"
+  button.className = "btn btn-secondary";
+  button.setAttribute('data-bs-toggle', "modal");
+  button.setAttribute('data-bs-target', "#staticBackdropEdit");
+  button.innerText = "Edit the note";
   return button;
 }

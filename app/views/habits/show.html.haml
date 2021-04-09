@@ -32,3 +32,15 @@
         %small.text-muted A habit takes between 21 and 66 days to generate
       .modal-footer
         %button#close-btn.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
+
+.modal.fade#staticBackdropEdit{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Edit habit
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form_edit_note', note: @note
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button#close-btn.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close

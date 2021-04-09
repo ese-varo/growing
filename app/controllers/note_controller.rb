@@ -12,4 +12,18 @@ class NoteController < ApplicationController
       render habit_path(day_habit.habit_id)
     end
   end
+
+  def update
+    @note = Note.find(params[:id])
+    @note.update(description: params[:description])
+    if @note.valid?
+      flash[:success] = "Note updated"
+      respond_to do |format|
+        format.js
+      end
+    else 
+      flash[:danger] = "Note not updated"
+      redirect_to habits_path
+    end
+  end
 end
