@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :habits, only: %i[index create show]
   resources :days do
     resources :note, only: %i[create update]
+    resources :checkpoint
   end
   resources :note, only: %i[destroy]
 end

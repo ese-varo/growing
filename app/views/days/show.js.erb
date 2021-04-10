@@ -65,3 +65,6 @@ function deleteButtonNote() {
   button.setAttribute("data-method", "delete");
   return button;
 }
+
+checkpointContainer = document.getElementById('checkpoint-container');
+checkpointContainer.innerHTML = "<%= j render 'checkpoints/checkpoint', day: @day_habit %>"

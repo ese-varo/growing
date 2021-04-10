@@ -2,6 +2,7 @@ class Habit < ApplicationRecord
   after_create :add_days
   belongs_to :user
   has_many :days, dependent: :delete_all
+  has_many :checkpoints, dependent: :delete_all
   validates :name, :description, :start_date, :end_date, presence: true
 
   def start_date_format
@@ -14,6 +15,11 @@ class Habit < ApplicationRecord
 
   def has_date(date)
     (start_date..end_date).include?(date)
+  end
+
+  def current_day
+    day = days.find_by(date: Date.today)
+    return day ? day : days.first
   end
 
   private

@@ -14,14 +14,17 @@
         .day
           = link_to day.date.strftime('%d'), day, remote: true, class: "#{'current-day' if Date.today == day.date} d-flex justify-content-center align-items-center", id: "#{month}-#{day.date.strftime('%d')}"
           %div{class: "#{'had-note' if day.note}", 'data-bs-toggle': "#{'tooltip' if day.note}", 'data-bs-placement': "#{'bottom' if day.note}", 'title': "#{'You have a note' if day.note}"}
-    #organizerContainer
-    - if @habit.end_date >= Date.today
-      %h6 Note
-      #note
-        %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
-      .checkpoint
-        %h6 Checkpoint
-        %p.checkpoint-description this is a checkpoint
+    #organizerContainer.row
+      - if @habit.end_date >= Date.today
+        #note-container.col-md-6
+          #checkpoint.card.text-dark.bg-light.mb-3
+            .card-header Note
+            #note.card-body
+              %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
+        #checkpoint-container.col-md-6
+          = render 'checkpoints/checkpoint', day: @current_day
+
+    = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 
 .modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
   .modal-dialog

@@ -1,0 +1,13 @@
+- checkpoint = day.nil? ? nil : day.checkpoint
+#checkpoint.card.text-dark.bg-light.mb-3
+  .card-header Checkpoint
+  .card-body
+    - if checkpoint.blank?
+      %h5.card-title No checkpoint for today
+      %p.card-text You can add one
+      = link_to 'Create', new_day_checkpoint_path(day), remote: true, class: 'btn btn-primary btn-sm'
+    - else
+      %h5.card-title= checkpoint.title
+      %p.card-text= checkpoint.description
+      = link_to 'Update', '#', class: 'btn btn-primary btn-sm'
+      = link_to 'Delete', '#', class: 'btn btn-warning btn-sm'
