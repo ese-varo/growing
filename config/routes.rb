@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :habits, only: %i[index create show]
   resources :days do
-    resources :note
+    resources :note, only: %i[create update]
   end
+  resources :note, only: %i[destroy]
 end
