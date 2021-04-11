@@ -15,8 +15,8 @@ class NoteController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    @note.update(description: params[:description])
-    if @note.valid?
+    @note.description = params[:description]
+    if @note.save
       flash[:success] = "Note updated"
       respond_to do |format|
         format.js
@@ -29,12 +29,9 @@ class NoteController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
-    habit_id = @note.noteable.habit_id
     if @note.destroy
       flash[:success] = "Note deleted"
-      redirect_to habit_path(habit_id)
-    else 
-      flash[:danger] = "Note not deleted"
+      habit_id = @note.noteable.habit_id
       redirect_to habit_path(habit_id)
     end
   end
