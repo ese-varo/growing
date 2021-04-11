@@ -2,6 +2,7 @@ container = document.getElementById("note");
 note = document.getElementById("note-description");
 addNoteButton = document.getElementById("add-note-btn");
 editNoteButton = document.getElementById("edit-note-btn");
+deleteNoteButton = document.getElementById("delete-note-btn");
 formNote = document.getElementById("form-note");
 formEditNote = document.getElementById("form-edit-note");
 if("<%= @note %>") {
@@ -11,6 +12,11 @@ if("<%= @note %>") {
   if (!editNoteButton) {
     container.appendChild(editButtonNote());
   }
+
+  if (!deleteNoteButton) {
+    container.appendChild(deleteButtonNote());
+  }
+
   if (addNoteButton) {
     addNoteButton.remove();
   }
@@ -24,6 +30,10 @@ if("<%= @note %>") {
   if (editNoteButton) {
     editNoteButton.remove();
   }
+  if (deleteNoteButton) {
+    deleteNoteButton.remove();
+  }
+
 }
 
 function createButonNote() {
@@ -43,5 +53,15 @@ function editButtonNote() {
   button.setAttribute('data-bs-toggle', "modal");
   button.setAttribute('data-bs-target', "#staticBackdropEdit");
   button.innerText = "Edit the note";
+  return button;
+}
+
+function deleteButtonNote() { 
+  let button = document.createElement("a");
+  button.id = "delete-note-btn"
+  button.className = "btn btn-danger";
+  button.innerText = "Delete the note";
+  button.href = "/note/" + "<%= @note.id if @note %>";
+  button.setAttribute("data-method", "delete");
   return button;
 }
