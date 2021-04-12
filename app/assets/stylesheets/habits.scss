@@ -21,7 +21,11 @@
 
 .day:hover {
   cursor: pointer;
-  background-color: green;
+  background-color: #292c7b;
+
+  a {
+    color: #ededed !important;
+  }
 }
 
 .tooltip > .tooltip-inner {
