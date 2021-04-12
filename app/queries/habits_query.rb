@@ -12,8 +12,4 @@ class HabitsQuery
   def archived
     @habits.where(status: true)
   end
-
-  def today
-    @habits.where()
-  end
 end
