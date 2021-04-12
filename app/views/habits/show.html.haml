@@ -16,7 +16,7 @@
     - if @habit.end_date >= Date.today
       %h6 Note
       #note
-        %p#note-description this is a note
+        %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
       .checkpoint
         %h6 Checkpoint
         %p.checkpoint-description this is a checkpoint
