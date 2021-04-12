@@ -1,4 +1,6 @@
 class NoteController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     day_habit = Day.find(params[:day_id])
     @note = Note.create(description: params[:description], noteable: day_habit)
