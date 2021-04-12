@@ -1,0 +1,25 @@
+document.getElementById("add-note-btn").remove();
+document.getElementById("note-description").innerText = "<%= @note.description %>";
+document.getElementById("note").appendChild(editButtonNote());
+document.getElementById("note").appendChild(deleteButtonNote());
+document.getElementById("close-btn-add").click();
+
+function editButtonNote() { 
+  let button = document.createElement("button");
+  button.id = "edit-note-btn"
+  button.className = "btn btn-secondary";
+  button.setAttribute('data-bs-toggle', "modal");
+  button.setAttribute('data-bs-target', "#staticBackdropEdit");
+  button.innerText = "Edit the note";
+  return button;
+}
+
+function deleteButtonNote() { 
+  let button = document.createElement("a");
+  button.id = "delete-note-btn"
+  button.className = "btn btn-danger";
+  button.innerText = "Delete the note";
+  button.href = "/note/" + "<%= @note.id if @note %>";
+  button.setAttribute("data-method", "delete");
+  return button;
+}

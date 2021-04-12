@@ -14,7 +14,7 @@ RSpec.describe 'Habits', type: :request do
       let!(:habit) { create(:habit, user: user) }
 
       it 'show active habit' do
-        get habits_path
+        get habit_path(habit)
         expect(response.body).to include(habit.name)
       end
     end

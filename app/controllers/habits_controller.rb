@@ -1,6 +1,5 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit, only: %i[show]
 
   def index
     @habit = Habit.new
@@ -18,10 +17,15 @@ class HabitsController < ApplicationController
     end
   end
 
-  def show; end
-
-  def set_habit
+  def show
     @habit = Habit.find(params[:id])
+    @note = Note.new
+    @day_habit = day_habit(@habit)
+    @day_note = @day_habit.note if @day_note
+  end
+
+  def day_habit(habit)
+    DaysQuery.new(@habit).today.first
   end
 
   def end_date_param
