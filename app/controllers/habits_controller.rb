@@ -21,13 +21,11 @@ class HabitsController < ApplicationController
     @habit = Habit.find(params[:id])
     @note = Note.new
     @day_habit = day_habit(@habit)
-    @day_note = @day_habit.note
+    @day_note = @day_habit.note if @day_note
   end
 
   def day_habit(habit)
-    days = DaysQuery.new(@habit).today
-    day_habit = days[0] if days[0]
-    day_habit
+    DaysQuery.new(@habit).today.first
   end
 
   def end_date_param
