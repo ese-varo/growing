@@ -1,0 +1,7 @@
+.tab-content#pills-tabContent
+  .tab-pane.fade.show.active#pills-active-habits{ 'role': 'tabpanel', 'aria-labelledby': 'pills-active-habits-tab' }
+    .row.g-3
+      = render(partial: 'habit', collection: habits.active) || render(partial: 'empty_list', locals: { habits_status: 'active' })
+  .tab-pane.fade#pills-archived-habits{ role: 'tabpanel', 'aria-labelledby': 'pills-archived-habits-tab' }
+    .row.g-3
+      = render(partial: 'habit', collection: habits.archived) || render(partial: 'empty_list', locals: { habits_status: 'completed' })

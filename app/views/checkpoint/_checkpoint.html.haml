@@ -1,0 +1,19 @@
+- checkpoint = day.nil? ? nil : day.checkpoint
+#checkpoint.card.text-dark.bg-light.mb-3
+  .card-header Checkpoint
+  .card-body
+    - if checkpoint.blank?
+      %h5.card-title No checkpoint for today
+      %p.card-text You can add one
+      %button(type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkpoint-new-form")
+        Create
+    - else
+      %h5.card-title= checkpoint.title
+      %p.card-text= checkpoint.description
+      %button(type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkpoint-edit-form")
+        Update
+      = link_to 'Delete', day_checkpoint_path(day, checkpoint), method: :delete, remote: true, class: 'btn btn-warning btn-sm'
+- if day
+  = render 'checkpoint/new_form', day: day
+- if checkpoint
+  = render 'checkpoint/edit_form', day: day

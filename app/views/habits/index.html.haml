@@ -1,0 +1,16 @@
+.d-flex.justify-content-end.mb-3
+  %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Add New Habit
+= render 'tab'
+= render 'tab_content', habits: @habits
+
+.modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Create a new habit
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form', habit: @habit
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close

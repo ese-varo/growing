@@ -1,0 +1,28 @@
+body a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+body a:hover {
+  color: rgb(222, 222, 222);
+}
+
+body li {
+  list-style-type: none;
+}
+
+body .btn-primary{
+  background-color: rgb(232, 66, 90);
+}
+
+body .btn-primary:hover{
+  background-color: rgb(194, 54, 73);
+}
+
+.navbar {
+  background-color: rgb(41,42,123);
+}
+
+#nav-logo {
+  color: rgb(255, 255, 255);
+}

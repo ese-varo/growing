@@ -1,0 +1,27 @@
+.row.justify-content-center
+  .col-6
+    .card
+      .card-body
+        .card-title.mb-4
+          %h2 My Profile
+        .card-text
+          %table.table.table-hover
+            %tbody
+              %tr
+                %td.text-muted FIRST NAME
+                %td=@user.first_name
+              %tr
+                %td.text-muted LAST NAME
+                %td=@user.last_name
+              %tr
+                %td.text-muted PHONE NUMBER
+                %td=@user.phone
+              %tr
+                %td.text-muted EMAIL
+                %td=@user.email
+      .card-body.text-end
+        =link_to "Back", :back, class: 'btn btn-light'
+        =link_to 'Edit', edit_user_registration_path, class: 'btn btn-primary'
+      .card-footer.text-center.text-muted
+        %div= "Last updated #{@user.updated_at.to_date}"
+

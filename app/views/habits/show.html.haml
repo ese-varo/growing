@@ -1,0 +1,66 @@
+.d-flex.justify-content-end.mb-3
+  %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Edit Habit
+
+.modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Edit habit
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form', habit: @habit
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
+
+.card.mt-4.p-3
+  .card-body
+    %h4.card-title= "Habit: #{@habit.name}"
+    %h6.card-subtitle.mb-2.text-muted= @habit.description
+    .row.mt-4
+      %p.col-6.text-center= "Start: #{@habit.start_date_format}"
+      %p.col-6.text-center= "End: #{@habit.end_date_format}"
+    #calendarContainer.w-100
+      - month = @habit.days.first.date.strftime('%B')
+      %h5.month= month
+      - @habit.days.each do |day|
+        - unless day.date.strftime('%B') == month
+          %h5.month= month = day.date.strftime('%B')
+        .day
+          = link_to day.date.strftime('%d'), day, remote: true, class: "#{'current-day' if Date.today == day.date} d-flex justify-content-center align-items-center text-dark", id: "#{month}-#{day.date.strftime('%d')}"
+          %div{class: "#{'had-note' if day.note}", 'data-bs-toggle': "#{'tooltip' if day.note}", 'data-bs-placement': "#{'bottom' if day.note}", 'title': "#{'You have a note' if day.note}"}
+    #organizerContainer.row
+      - if @habit.end_date >= Date.today
+        #note-container.col-md-6
+          .card.text-dark.bg-light.mb-3
+            .card-header Note
+            #note.card-body
+              %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
+        #checkpoint-container.col-md-6
+          = render 'checkpoint/checkpoint', day: @current_day
+
+    = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
+
+.modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Create a new note
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form_note', note: @note
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button#close-btn-add.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
+
+.modal.fade#staticBackdropEdit{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Edit note
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = render 'form_edit_note', note: @note
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button#close-btn-edit.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
