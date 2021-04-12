@@ -3,8 +3,6 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 #calendarContainer,
 #organizerContainer {
-  // float: left;
-  // margin: 5px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -14,8 +12,10 @@
 }
 
 .day {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+  position: relative;
 }
 
 .month {
@@ -82,4 +82,21 @@
   background-color: #292c7b;
   border: none;
   transition: all 200ms ease-in;
+}
+
+.current-day {
+  border-radius: 50%;
+  background-color: rgba(232, 66,90,0.3);
+  width: 30px;
+  height: 30px;
+}
+
+.had-note {
+  position: absolute;
+  bottom: -10px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #292c7b;
+  border-radius: 50%;
 }
