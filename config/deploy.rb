@@ -5,7 +5,7 @@ require 'capistrano-db-tasks'
 set :application, 'growing'
 set :repo_url, 'git@github.com:ese-varo/growing.git'
 set :deploy_to, '/home/deploy/growing'
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, 'main'
 
 set :linked_files, %w[config/database.yml .env]
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
