@@ -1,12 +1,12 @@
 class CheckpointController < ApplicationController
-  before_action :set_habit, only: %i[create update]
+  before_action :set_day, only: %i[create update]
 
   def new
   end
 
   def create
-    @checkpoint = @habit.checkpoint.create(checkpoint_params)
-    if @checkpoint.valid?
+    @checkpoint = @day.build_checkpoint(checkpoint_params)
+    if @checkpoint.save
       flash[:success] = "Checkpoint created"
       respond_to do |format|
         format.js
@@ -21,11 +21,11 @@ class CheckpointController < ApplicationController
 
   private
 
-  def set_habit
-    @habit = Habit.find(params[:id])
+  def set_day
+    @day = Day.find(params[:day_id])
   end
 
   def checkpoint_params
-    params.require(:checkpoint).permit(:title, :description, :due_date, :status, :day_id)
+    params.require(:checkpoint).permit(:title, :description, :due_date, :status, :habit_id)
   end
 end

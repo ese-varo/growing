@@ -5,9 +5,12 @@
     - if checkpoint.blank?
       %h5.card-title No checkpoint for today
       %p.card-text You can add one
-      = link_to 'Create', new_day_checkpoint_path(day), remote: true, class: 'btn btn-primary btn-sm'
+      %button(type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkpoint-form")
+        Create
     - else
       %h5.card-title= checkpoint.title
       %p.card-text= checkpoint.description
       = link_to 'Update', '#', class: 'btn btn-primary btn-sm'
       = link_to 'Delete', '#', class: 'btn btn-warning btn-sm'
+- if day
+  = render 'checkpoint/form', day: day

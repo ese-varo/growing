@@ -17,12 +17,12 @@
     #organizerContainer.row
       - if @habit.end_date >= Date.today
         #note-container.col-md-6
-          #checkpoint.card.text-dark.bg-light.mb-3
+          .card.text-dark.bg-light.mb-3
             .card-header Note
             #note.card-body
               %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
         #checkpoint-container.col-md-6
-          = render 'checkpoints/checkpoint', day: @current_day
+          = render 'checkpoint/checkpoint', day: @current_day
 
     = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 
