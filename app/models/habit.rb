@@ -19,7 +19,7 @@ class Habit < ApplicationRecord
 
   def current_day
     day = days.find_by(date: Date.today)
-    return day ? day : days.first
+    day ? day : days.first
   end
 
   private
