@@ -12,7 +12,7 @@
       %p.card-text= checkpoint.description
       %button(type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkpoint-edit-form")
         Update
-      = link_to 'Delete', '#', class: 'btn btn-warning btn-sm'
+      = link_to 'Delete', day_checkpoint_path(day, checkpoint), method: :delete, remote: true, class: 'btn btn-warning btn-sm'
 - if day
   = render 'checkpoint/new_form', day: day
 - if checkpoint

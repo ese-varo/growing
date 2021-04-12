@@ -1,7 +1,7 @@
 class CheckpointController < ApplicationController
   before_action :set_day, only: %i[create update]
   before_action :set_habit, only: :update
-  before_action :set_checkpoint, only: :update
+  before_action :set_checkpoint, only: %i[update destroy]
 
   def new
   end
@@ -9,10 +9,7 @@ class CheckpointController < ApplicationController
   def create
     @checkpoint = @day.build_checkpoint(checkpoint_params)
     if @checkpoint.save
-      flash[:success] = "Checkpoint created"
-      respond_to do |format|
-        format.js
-      end
+      respond_to :js
     else
       redirect_to @habit, danger: "Checkpoint not created"
     end
@@ -21,13 +18,16 @@ class CheckpointController < ApplicationController
   def update
     @checkpoint.update(checkpoint_params)
     if @checkpoint.save
-      flash[:success] = "Checkpoint updated"
-      respond_to do |format|
-        format.js
-      end
+      respond_to :js
     else
       redirect_to @habit, danger: "Checkpoint not updated"
     end
+  end
+
+  def destroy
+    @day = Day.find(@checkpoint.day_id)
+    @checkpoint.destroy
+    respond_to :js
   end
 
   private
