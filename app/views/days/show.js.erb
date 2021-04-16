@@ -9,6 +9,7 @@ if("<%= @note %>") {
   note.innerText = "<%= @note.description if @note %>";
   formEditNote.action = '/days/' + "<%= @day_habit.id %>" + "/note/" + "<%= @note.id if @note %>";
   formEditNote.setAttribute('data-remote', true);
+
   if (!editNoteButton) {
     container.appendChild(editButtonNote());
   }

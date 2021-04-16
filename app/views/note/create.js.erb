@@ -3,6 +3,12 @@ document.getElementById("note-description").innerText = "<%= @note.description %
 document.getElementById("note").appendChild(editButtonNote());
 document.getElementById("note").appendChild(deleteButtonNote());
 document.getElementById("close-btn-add").click();
+formEditNote = document.getElementById("form-edit-note");
+formEditNote.action = '/days/' + "<%= @day_habit.id %>" + "/note/" + "<%= @note.id if @note %>";
+formEditNote.setAttribute('data-remote', true);
+div = document.createElement('div');
+div.className = "had-note";
+document.getElementById("day-<%= @day_habit.id %>").appendChild(div);
 
 function editButtonNote() { 
   let button = document.createElement("button");
