@@ -9,6 +9,7 @@ if("<%= @note %>") {
   note.innerText = "<%= @note.description if @note %>";
   formEditNote.action = '/days/' + "<%= @day_habit.id %>" + "/note/" + "<%= @note.id if @note %>";
   formEditNote.setAttribute('data-remote', true);
+
   if (!editNoteButton) {
     container.appendChild(editButtonNote());
   }
@@ -41,7 +42,7 @@ function createButonNote() {
   button.id = "add-note-btn"
   button.className = "btn btn-primary";
   button.setAttribute('data-bs-toggle', "modal");
-  button.setAttribute('data-bs-target', "#staticBackdrop");
+  button.setAttribute('data-bs-target', "#staticBackdropCreate");
   button.innerText = "Add a note";
   return button;
 }

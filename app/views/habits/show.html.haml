@@ -26,9 +26,12 @@
       - @habit.days.each do |day|
         - unless day.date.strftime('%B') == month
           %h5.month= month = day.date.strftime('%B')
-        .day
+        .day{id: "day-#{day.id}"}
           = link_to day.date.strftime('%d'), day, remote: true, class: "#{'current-day' if Date.today == day.date} d-flex justify-content-center align-items-center text-dark", id: "#{month}-#{day.date.strftime('%d')}"
-          %div{class: "#{'had-note' if day.note}", 'data-bs-toggle': "#{'tooltip' if day.note}", 'data-bs-placement': "#{'bottom' if day.note}", 'title': "#{'You have a note' if day.note}"}
+          - if day.note
+            %div{class: 'had-note', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a note"}
+          - if day.checkpoint
+            %div{class: 'had-checkpoint', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a checkpoint"}
     #organizerContainer.row
       - if @habit.end_date >= Date.today
         #note-container.col-md-6
@@ -41,7 +44,7 @@
 
     = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 
-.modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+.modal.fade#staticBackdropCreate{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
   .modal-dialog
     .modal-content
       .modal-header

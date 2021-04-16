@@ -23,6 +23,7 @@ class HabitsController < ApplicationController
   def edit; end
 
   def update
+    binding.pry
     if @habit.update(habit_params)
       flash[:success] = 'Habit updated successfully'
       redirect_to @habit
