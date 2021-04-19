@@ -1,11 +1,2 @@
 %ul.timeline.p-0.m-0#timeline
-  %li.timeline-item.complete{'data-bs-html': 'true', 'data-bs-toggle':"tooltip", 'data-bs-placement': "right", 'title': "Checkpoint 1</br>12/04/2021</br>Lorem ipsum modses asd  asda" }
-    .checkpoint
-  %li.timeline-item.complete{'data-bs-html': 'true', 'data-bs-toggle':"tooltip", 'data-bs-placement': "right", 'title': "Checkpoint 1</br>12/04/2021</br>Lorem ipsum modses asd  asda" }
-    .checkpoint
-  %li.timeline-item.complete{'data-bs-html': 'true', 'data-bs-toggle':"tooltip", 'data-bs-placement': "right", 'title': "Checkpoint 1</br>12/04/2021</br>Lorem ipsum modses asd  asda" }
-    .checkpoint
-  %li.timeline-item{'data-bs-html': 'true', 'data-bs-toggle':"tooltip", 'data-bs-placement': "right", 'title': "Checkpoint 1</br>12/04/2021</br>Lorem ipsum modses" }
-    .checkpoint
-  %li.timeline-item
-    .checkpoint{'data-bs-html': 'true', 'data-bs-toggle':"tooltip", 'data-bs-placement': "right", 'title': "Checkpoint 1</br>12/04/2021</br>Lorem ipsum modses" }
+  = render partial: 'checkpoint', collection: habit.checkpoints
