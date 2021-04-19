@@ -27,6 +27,7 @@ class HabitsController < ApplicationController
 
   def update
     if @habit.update(habit_params)
+      DayCheckJob.perform_now(day_habit: @habit.days.last)
       flash[:success] = 'Habit updated successfully'
       redirect_to @habit
     else
