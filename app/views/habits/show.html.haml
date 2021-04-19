@@ -21,9 +21,9 @@
       %p.col-6.text-center= "Start: #{@habit.start_date_format}"
       %p.col-6.text-center= "End: #{@habit.end_date_format}"
     #calendarContainer.w-100
-      - month = @habit.days.first.date.strftime('%B')
+      - month = @habit_days.first.date.strftime('%B')
       %h5.month= month
-      - @habit.days.each do |day|
+      - @habit_days.each do |day|
         - unless day.date.strftime('%B') == month
           %h5.month= month = day.date.strftime('%B')
         .day{id: "day-#{day.id}"}

@@ -18,7 +18,9 @@ class HabitsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @habit_days = @habit.days_order_by_date
+  end
 
   def edit; end
 

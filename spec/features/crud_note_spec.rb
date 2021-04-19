@@ -16,7 +16,7 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       fill_in 'Description', with: habit[:description]
       fill_in 'Start date', with: habit[:start_date]
       fill_in 'Habit duration', with: rand(22..66)
-      click_button 'Create habit'
+      click_button 'Create Habit'
       find("##{Date.today.strftime('%B')}-#{Date.today.day + 1}").click
       expect(page).to have_content "You don't have a note yet"
 
@@ -35,7 +35,7 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       fill_in 'Description', with: habit[:description]
       fill_in 'Start date', with: habit[:start_date]
       fill_in 'Habit duration', with: rand(22..66)
-      click_button 'Create habit'
+      click_button 'Create Habit'
       find("##{Date.today.strftime('%B')}-#{Date.today.day + 2}").click
       expect(page).to have_content "You don't have a note yet"
 
