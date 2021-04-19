@@ -18,7 +18,9 @@ class HabitsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @habit_days = @habit.days_order_by_date
+  end
 
   def edit; end
 
@@ -47,9 +49,9 @@ class HabitsController < ApplicationController
     raise MissingAttributeError unless params[:habit][:habit_duration]
 
     if (params[:_method] === 'patch')
-      @habit.start_date.to_date + params[:habit][:habit_duration].to_i.days
+      @habit.start_date.to_date + params[:habit][:habit_duration].to_i.days - 1.day
     else
-      params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days
+      params[:habit][:start_date].to_date + params[:habit][:habit_duration].to_i.days - 1.day
     end
   rescue StandardError
     flash[:info] = 'Invalid form'
