@@ -1,2 +1,8 @@
 document.getElementById('new-checkpoint-close-btn').click();
 document.getElementById('checkpoint-container').innerHTML = "<%= j render 'checkpoint/checkpoint', day: @day %>";
+checkpointIdentifier = document.createElement('div');
+checkpointIdentifier.className = 'had-checkpoint';
+checkpointIdentifier.setAttribute('data-bs-toggle', 'tooltip');
+checkpointIdentifier.setAttribute('data-bs-placement', 'bottom');
+checkpointIdentifier.setAttribute('title', 'You have a checkpoint');
+document.getElementById("day-<%= @day.id %>").appendChild(checkpointIdentifier);

@@ -1,6 +1,3 @@
-.d-flex.justify-content-end.mb-3
-  %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Edit Habit
-
 .modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
   .modal-dialog
     .modal-content
@@ -15,15 +12,18 @@
 
 .card.mt-4.p-3
   .card-body
-    %h4.card-title= "Habit: #{@habit.name}"
+    %h4.d-flex.card-title.habit-title
+      = "Habit: #{@habit.name}"
+      %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Edit Habit
+
     %h6.card-subtitle.mb-2.text-muted= @habit.description
     .row.mt-4
       %p.col-6.text-center= "Start: #{@habit.start_date_format}"
       %p.col-6.text-center= "End: #{@habit.end_date_format}"
     #calendarContainer.w-100
-      - month = @habit.days.first.date.strftime('%B')
+      - month = @habit_days.first.date.strftime('%B')
       %h5.month= month
-      - @habit.days.each do |day|
+      - @habit_days.each do |day|
         - unless day.date.strftime('%B') == month
           %h5.month= month = day.date.strftime('%B')
         .day{id: "day-#{day.id}"}
@@ -40,7 +40,7 @@
             #note.card-body
               %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
         #checkpoint-container.col-md-6
-          = render 'checkpoint/checkpoint', day: @current_day
+          = render 'checkpoint/checkpoint', day: @day_habit
 
     = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 

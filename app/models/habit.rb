@@ -6,12 +6,16 @@ class Habit < ApplicationRecord
   has_many :checkpoints, dependent: :delete_all
   validates :name, :description, :start_date, :end_date, presence: true
 
+  def days_order_by_date
+    days.order('date ASC')
+  end
+
   def start_date_format
-    self.start_date.to_s(:long) 
+    self.start_date.to_s(:long)
   end
 
   def end_date_format
-    self.end_date.to_s(:long) 
+    self.end_date.to_s(:long)
   end
 
   def has_date(date)
@@ -24,10 +28,12 @@ class Habit < ApplicationRecord
   end
 
   def clean_unused_days
-    day = self.end_date
+    day = self.end_date + 1.day
     loop do
-      self.days.where(date: day).exists? ? self.days.find_by(date: day).destroy : day += 1.day 
-      break if  day >= saved_change_to_end_date.first
+      break if saved_change_to_end_date.nil?
+      break if day > saved_change_to_end_date.first
+      self.days.find_by(date: day).destroy if self.days.where(date: day).exists?
+      day += 1.day
     end
   end
 
@@ -36,8 +42,9 @@ class Habit < ApplicationRecord
   def add_days
     day = start_date
     loop do
+      break if saved_change_to_end_date.nil?
       self.days.where(date: day).exists? ? day += 1.day : (self.days.create(status: false, date: day) &&  day += 1.day)
-      break if day >= end_date
+      break if day > end_date
     end
   end
 end
