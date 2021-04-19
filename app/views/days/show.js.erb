@@ -69,3 +69,10 @@ function deleteButtonNote() {
 
 checkpointContainer = document.getElementById('checkpoint-container');
 checkpointContainer.innerHTML = "<%= j render 'checkpoint/checkpoint', day: @day_habit %>";
+dayCheckContainer = document.getElementById('day-check-container');
+dayCheckContainer.innerHTML = "<%= j render 'days/day', day_habit: @day_habit %>";
+
+currentDay = document.querySelector('.current-day');
+currentDay.classList.remove('current-day');
+clickedDay = document.querySelector("#day-<%= @day_habit.id %>");
+clickedDay.classList.add('current-day');

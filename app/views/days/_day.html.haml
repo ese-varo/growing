@@ -1,0 +1,6 @@
+.card.text-dark.bg-light.mb-3
+  .card-header Daily check
+  #day-check.card-body
+    %p#day-check-description #{day_habit.status ? "You already checked today!" : 'You haven\'t checked today'}
+    = button_to "Check", day_path(day_habit, day_habit: { status: true }), 
+      remote: true, method: :patch, class: 'btn btn-primary btn-sm' unless day_habit.status

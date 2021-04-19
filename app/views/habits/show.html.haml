@@ -27,20 +27,23 @@
         - unless day.date.strftime('%B') == month
           %h5.month= month = day.date.strftime('%B')
         .day{id: "day-#{day.id}"}
-          = link_to day.date.strftime('%d'), day, remote: true, class: "#{'current-day' if Date.today == day.date} d-flex justify-content-center align-items-center text-dark", id: "#{month}-#{day.date.strftime('%d')}"
+          = link_to day.date.strftime('%d'), day, remote: true, class: "#{'current-day' if @day_habit.date == day.date} d-flex justify-content-center align-items-center text-dark", id: "#{month}-#{day.date.strftime('%d')}"
           - if day.note
             %div{class: 'had-note', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a note"}
           - if day.checkpoint
             %div{class: 'had-checkpoint', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a checkpoint"}
     #organizerContainer.row
       - if @habit.end_date >= Date.today
-        #note-container.col-md-6
+        #day-check-container.col-md-2
+          = render 'days/day', day_habit: @day_habit
+        #note-container.col-md-5
           .card.text-dark.bg-light.mb-3
             .card-header Note
             #note.card-body
               %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
-        #checkpoint-container.col-md-6
+        #checkpoint-container.col-md-5
           = render 'checkpoint/checkpoint', day: @day_habit
+
 
     = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 
