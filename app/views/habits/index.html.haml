@@ -1,6 +1,7 @@
-.d-flex.justify-content-end.mb-3
-  %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Add New Habit
-= render 'tab'
+.habits-nav.d-flex.justify-content-between.mb-3.mt-3
+  = render 'tab'
+  %div
+    %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Add New Habit
 = render 'tab_content', habits: @habits
 
 .modal.fade#staticBackdrop{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
