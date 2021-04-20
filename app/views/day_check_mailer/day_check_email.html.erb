@@ -17,6 +17,6 @@
     <br>
     ----------
     </p>
-    <p>Link to your habit: <%= link_to "Habit", "#{Rails.root}/habits/#{@habit.id}" %></p>
+    <p>Link to your habit: <%= link_to "Habit", habit_url(@habit) %></p>
   </body>
 </html>

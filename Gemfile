@@ -17,6 +17,7 @@ gem 'dotenv-rails'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'letter_opener'
+  gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.1.0'
 end
