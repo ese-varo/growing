@@ -1,2 +1,4 @@
 expired_checkpoints:
   class: "ExpiredCheckpointsJob"
+  cron: "0 12 * * * *" # execute daily at 12:00 pm
+

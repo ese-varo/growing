@@ -6,6 +6,18 @@ class Checkpoint < ApplicationRecord
   validates :title, :description, :due_date, presence: true
   validate :due_date_within_dates_of_habit
 
+  def toggle_status
+    self.status = !status
+  end
+
+  def self.expired
+    where(due_date: Date.today)
+  end
+
+  def able_to_be_checked?
+    due_date <= Date.today
+  end
+
   private
 
   def due_date_within_dates_of_habit

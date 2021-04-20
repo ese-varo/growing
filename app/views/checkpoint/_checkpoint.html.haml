@@ -11,6 +11,14 @@
     - else
       %h5.card-title= checkpoint.title
       %p.card-text= checkpoint.description
+      - if checkpoint.able_to_be_checked?
+        .check-ckeckpoint.my-3
+          - if checkpoint.status
+            %p.text-success This checkpoint has been achieved!
+            = link_to 'Mark as not Achieved', checkpoint_toggle_path(checkpoint), remote: true, class: 'btn btn-primary btn-sm'
+          - else
+            %p.text-danger This checkpoint hasn't been achieved!
+            = link_to 'Mark as Achieved', checkpoint_toggle_path(checkpoint), remote: true, class: 'btn btn-success btn-sm'
       %button(type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkpoint-edit-form")
         Update
       = link_to 'Delete', day_checkpoint_path(day, checkpoint), method: :delete, remote: true, class: 'btn btn-warning btn-sm'

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :note, only: %i[create update]
     resources :checkpoint
   end
+  get 'checkpoint_toggle/:id', to: 'checkpoint#toggle_status', as: 'checkpoint_toggle'
   resources :note, only: %i[destroy]
 end
