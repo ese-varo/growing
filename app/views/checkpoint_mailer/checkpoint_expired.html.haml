@@ -1,4 +1,16 @@
 %h1 Expired checkpoint
-%p This checkpoint has expired
-%p= "To mark it as achieved or not, follow this link: #{@url}"
+%p
+  = "Hi #{@user.first_name} this is a reminder for a checkpoint that expires today\n"
+  This are the checkpoint details:
+
+%h3 Habit
+%p= "Name: #{@habit.name}"
+%p= "Description: #{@habit.description}"
+
+%h3= "The checkpoint '#{@checkpoint.title}' has expired"
+%p= "Checkpoint description: #{@checkpoint.description}"
+
+%p
+  To mark it as achieved or not, follow this link:&nbsp;
+  = link_to 'check checkpoint', @url
 %p Just remember to keep growing and have a good day!

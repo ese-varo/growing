@@ -9,8 +9,6 @@ class CheckpointController < ApplicationController
   def create
     @checkpoint = @day.build_checkpoint(checkpoint_params)
     if @checkpoint.save
-      # CheckpointMailer.with(user: current_user).checkpoint_expired.deliver_now
-      ExpiredCheckpointsJob.perform_now(current_user)
       respond_to :js
     else
       redirect_to @habit, danger: "Checkpoint not created"

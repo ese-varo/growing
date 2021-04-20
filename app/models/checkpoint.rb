@@ -8,6 +8,10 @@ class Checkpoint < ApplicationRecord
 
   private
 
+  def self.expired
+    where(due_date: Date.today)
+  end
+
   def due_date_within_dates_of_habit
     unless Habit.find(habit_id).has_date(due_date)
       errors.add(:due_date, "should be within habit start date and end date")
