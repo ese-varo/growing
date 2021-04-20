@@ -1,6 +1,6 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit, only: %i[show edit update]
+  before_action :set_habit, only: %i[show edit update toggle_status]
   before_action :set_day, only: %i[show edit update]
 
   def index
@@ -35,10 +35,19 @@ class HabitsController < ApplicationController
     end
   end
 
+  def toggle_status
+    @habit.toggle_status
+    if @habit.save
+      flash[:success] = "Habit has finished his period fo development"
+      redirect_to habits_path
+    else
+      flash[:danger] = "Habit wasn't checked correctly"
+      redirect_to habits_path 
+    end
+  end
+
   def set_habit
     @habit = Habit.find(params[:id])
-    @note = Note.new
-    @day_note = @day_habit.note if @day_note
   end
 
   def set_day

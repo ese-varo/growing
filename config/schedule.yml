@@ -9,3 +9,7 @@ expired_habits_reminder:
 day_check_job:
   class: "DayCheckJob"
   cron: "50 18 * * * *"
+
+last_day_habit:
+  class: "LastDayHabitJob"
+  cron: "* 12 * * * *"

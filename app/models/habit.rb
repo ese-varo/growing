@@ -31,6 +31,18 @@ class Habit < ApplicationRecord
     day ? day : days.first
   end
 
+  def toggle_status
+    self.status = !status
+  end
+
+  def self.last_day
+    where(end_date: Date.today, status: false)
+  end
+
+  def able_to_be_checked?
+    end_date == Date.today
+  end
+
   def clean_unused_days
     day = self.end_date + 1.day
     loop do
