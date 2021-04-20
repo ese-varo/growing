@@ -1,0 +1,15 @@
+%h1 Expired Habit Reminder
+%p
+  = "Hi #{@user.first_name} this is a reminder for a habit that has expired\n"
+  This are its details:
+
+%h3 Habit
+%p= "Name: #{@habit.name}"
+%p= "Description: #{@habit.description}"
+%p= "Start date: #{@habit.start_date}"
+%p= "End date: #{@habit.end_date}"
+
+%p
+  To mark it as created or not, follow this link:&nbsp;
+  = link_to 'mark habit as created', @url
+%p Just remember to keep growing and have a good day!

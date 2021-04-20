@@ -4,7 +4,7 @@ class ExpiredCheckpointsJob < ApplicationJob
   def perform
     return if get_expired_checkpoints.empty?
     get_expired_checkpoints.each do |checkpoint|
-      CheckpointMailer.with(checkpoint: checkpoint).checkpoint_expired.deliver_later!
+      CheckpointMailer.with(checkpoint: checkpoint).checkpoint_expired.deliver_later
     end
   end
 
