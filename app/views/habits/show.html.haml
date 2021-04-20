@@ -48,10 +48,7 @@
         #day-check-container.col-sm
           = render 'days/day', day_habit: @day_habit
         #note-container.col-md-5
-          .card.text-dark.bg-light.mb-3
-            .card-header Note
-            #note.card-body
-              %p#note-description #{@day_note ? @day_note.description : 'You don\'t have a note yet'}
+          = render 'note/note', day_note: @day_note
         #checkpoint-container.col-md-5
           = render 'checkpoint/checkpoint', day: @day_habit
 

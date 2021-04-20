@@ -13,7 +13,7 @@ document.getElementById("day-<%= @day_habit.id %>").appendChild(div);
 function editButtonNote() { 
   let button = document.createElement("button");
   button.id = "edit-note-btn"
-  button.className = "btn btn-secondary";
+  button.className = "btn btn-secondary btn-sm mb-1";
   button.setAttribute('data-bs-toggle', "modal");
   button.setAttribute('data-bs-target', "#staticBackdropEdit");
   button.innerText = "Edit the note";
@@ -23,7 +23,7 @@ function editButtonNote() {
 function deleteButtonNote() { 
   let button = document.createElement("a");
   button.id = "delete-note-btn"
-  button.className = "btn btn-danger";
+  button.className = "btn btn-danger btn-sm";
   button.innerText = "Delete the note";
   button.href = "/note/" + "<%= @note.id if @note %>";
   button.setAttribute("data-method", "delete");
