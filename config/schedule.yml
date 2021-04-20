@@ -1,15 +1,15 @@
 expired_checkpoints:
   class: "ExpiredCheckpointsJob"
   cron: "0 12 * * * *" # execute daily at 12:00 pm
-
 expired_habits_reminder:
   class: "ExpiredHabitsReminderJob"
   cron: "0 12 * * * *" # execute daily at 12:00 pm
-
 day_check_job:
   class: "DayCheckJob"
   cron: "50 18 * * * *"
-
 last_day_habit:
   class: "LastDayHabitJob"
   cron: "* 12 * * * *"
+reminder_tracking_habit:
+  class: "ReminderHabitTrackingJob"
+  cron: "0 19 * * * *" # execute daily at 7:00 pm"
