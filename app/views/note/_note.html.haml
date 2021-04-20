@@ -10,8 +10,8 @@
     - else
       %h5.card-title= note.description
       %button{'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdropEdit', class: "btn btn-danger btn-sm"}
-        Edit
-      = link_to 'Delete', note_path(note), method: :delete, remote: true, class: "btn btn-warning btn-sm"
+        Edit note
+      = link_to 'Delete note', note_path(note), method: :delete, remote: true, class: "btn btn-warning btn-sm"
 - if day_habit
   = render 'note/new_form', day: day_habit
 - if note

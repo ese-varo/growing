@@ -20,7 +20,7 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       find("##{Date.today.strftime('%B')}-#{Date.today.day + 1}").click
       expect(page).to have_content "You don't have a note yet"
 
-      click_button "Add a note"
+      click_button "Create a note for today"
       fill_in 'Description', with: note[:description]
       click_button "Create note"
 
@@ -39,10 +39,9 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       find("##{Date.today.strftime('%B')}-#{Date.today.day + 2}").click
       expect(page).to have_content "You don't have a note yet"
 
-      click_button "Add a note"
-      fill_in 'Description', with: ""
-      click_button "Create note"
-      message = page.find("#description").native.attribute("validationMessage")
+      click_button "Create a note for today", wait: 3
+      click_button "Create note", wait: 3
+      message = page.find("#note_description").native.attribute("validationMessage")
       expect(message).to eq "Please fill out this field."
     end
 
@@ -53,9 +52,9 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
 
       find("##{day.date.strftime('%B')}-#{day.date.day}").click
 
-      click_button "Edit the note"
+      click_button "Edit note"
       fill_in "Description", with: "New note"  
-      click_button "Edit note", wait: 5
+      click_button "Update", wait: 5
 
       expect(page).to have_content("New note")
     end
@@ -67,7 +66,7 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       visit habit_path(habit.id)
       find("##{day.date.strftime('%B')}-#{day.date.day}").click
  
-      click_link "Delete the note"
+      click_link "Delete note"
       expect(page).to have_content("Note deleted")
     end
 
@@ -78,11 +77,11 @@ RSpec.feature "CRUD Notes", type: :feature, js: true do
       visit habit_path(habit.id)
       find("##{day.date.strftime('%B')}-#{day.date.day}").click
  
-      click_link "Delete the note"
+      click_link "Delete note"
       expect(page).to have_content("Note deleted")
 
       find("##{day.date.strftime('%B')}-#{day.date.day}").click
-      click_button "Add a note"
+      click_button "Create a note for today"
       fill_in 'Description', with: note[:description]
       click_button "Create note"
 

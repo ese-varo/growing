@@ -10,12 +10,12 @@ RSpec.describe "Notes", type: :request do
     context 'with valid attributes'
     it 'saves a note in the database' do
       expect  do
-        post day_note_index_path(day), params: { description: build(:note).description }, xhr: true
+        post day_note_index_path(day), params: {note: attributes_for(:note)}, xhr: true
       end.to change(Note, :count).by(1)
     end
 
     it 'redirects to create.js' do
-      post day_note_index_path(day), params: { description: build(:note).description },  xhr: true
+      post day_note_index_path(day), params: { note: attributes_for(:note) },  xhr: true
       expect(response).to have_http_status(:success)
     end
   end
@@ -23,12 +23,12 @@ RSpec.describe "Notes", type: :request do
   context 'with invalid attributes' do
     it 'does not save a note in the database' do
       expect do
-        post day_note_index_path(day), params: { description: nil }
+        post day_note_index_path(day), params: { note: {description: nil} }
       end.not_to change(Note, :count)
     end
 
     it 'redirect_to the habit details template' do
-      post day_note_index_path(day), params: { description: nil }
+      post day_note_index_path(day), params: { note: {description: nil} }
       expect(response).to redirect_to(habit_path(habit))
     end
   end
@@ -40,25 +40,25 @@ RSpec.describe "Notes", type: :request do
     end
     context 'with valid attributes' do
       it 'saves a note in the database' do
-        patch day_note_path(day, @note), params: { description: @attributes['description'] }, xhr: true
+        patch day_note_path(day, @note), params: { note: {description: @attributes['description']} }, xhr: true
         expect(assigns(:note).description).to eq(@attributes['description'])
       end
 
       it 'redirects to update.js' do
-        patch day_note_path(day, @note, format: :js), params: { description: @attributes['description'] }, xhr: true
+        patch day_note_path(day, @note, format: :js), params: { note: {description: @attributes['description']} }, xhr: true
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'with invalid attributes' do
       it 'does not save a note in the database' do
-        patch day_note_path(day, @note), params: { description: nil }
+        patch day_note_path(day, @note), params: { note: {description: nil} }
         @note.reload
         expect(@note.description).not_to eq(Faker::Lorem.paragraph)
       end
 
       it 'redirect_to the habit details template' do
-        patch day_note_path(day, @note), params: { description: @attributes['description'] }
+        patch day_note_path(day, @note), params: { note: {description: @attributes['description']} }
         expect(response).to redirect_to habits_path
       end
     end
