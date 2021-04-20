@@ -1,6 +1,7 @@
 - checkpoint = day.nil? ? nil : day.checkpoint
-#checkpoint.card.text-dark.bg-light.mb-3
-  .card-header Checkpoint
+- color = checkpoint ? 'warning' : 'info'
+%div{:id => 'checkpoint', :class => "card text-dark bg-transparent mb-3 border-#{color}"}
+  %div{:class => "card-header bg-transparent"} Checkpoint
   .card-body
     - if checkpoint.blank?
       %h5.card-title No checkpoint for today

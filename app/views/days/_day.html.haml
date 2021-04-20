@@ -1,6 +1,9 @@
-.card.text-dark.bg-light.mb-3
-  .card-header Daily check
-  #day-check.card-body
-    %p#day-check-description #{day_habit.status ? "You already checked today!" : 'You haven\'t checked today'}
-    = button_to "Check", day_path(day_habit, day_habit: { status: true }), 
-      remote: true, method: :patch, class: 'btn btn-primary btn-sm' unless day_habit.status
+- color = day_habit.status ? 'success' : 'danger'
+%div{:class => "card border-#{day_habit.before_current_date? || day_habit.status ? color : 'secondary'} bg-transparent mb-3"}
+  %div{:class => "card-header bg-transparent"} Daily check
+  %div{:id => 'day-check', :class => "card-body text-#{color} border-#{color}"}
+    %p{:id => 'day-check-description', :class => "#{'text-muted' unless day_habit.before_current_date?}"}
+      #{day_habit.status ? "You already checked this day!" : 'You haven\'t checked this day'}
+    = button_to "Check", day_path(day_habit, day_habit: { status: true }),
+    disabled: day_habit.before_current_date? ? false : true, remote: true, method: :patch,
+    class: day_habit.before_current_date? ? 'btn btn-primary btn-sm' : 'btn btn-outline-secondary btn-sm' unless day_habit.status

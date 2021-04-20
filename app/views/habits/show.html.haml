@@ -10,7 +10,7 @@
       .modal-footer
         %button.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
 
-.card.mt-4.p-3
+.card.mt-4.p-3.mb-3
   .card-body
     %h4.d-flex.card-title.habit-title
       = "Habit: #{@habit.name}"
@@ -32,9 +32,20 @@
             %div{class: 'had-note', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a note"}
           - if day.checkpoint
             %div{class: 'had-checkpoint', 'data-bs-toggle': "tooltip", 'data-bs-placement': "bottom", 'title': "You have a checkpoint"}
+      .row.w-100.my-3
+        .d-flex.flex-wrap
+          .notifier-container.me-4
+            %span.notifier.notifier--checkpoint
+            %span.notifier-label.ms-4 Day with checkpoint
+          .notifier-container.me-4
+            %span.notifier.notifier--note
+            %span.notifier-label.ms-4 Day with note
+          .notifier-container.me-4
+            %span.notifier.notifier--selected-day
+            %span.notifier-label.ms-4 Day selected
     #organizerContainer.row
       - if @habit.end_date >= Date.today
-        #day-check-container.col-md-2
+        #day-check-container.col-sm
           = render 'days/day', day_habit: @day_habit
         #note-container.col-md-5
           .card.text-dark.bg-light.mb-3
