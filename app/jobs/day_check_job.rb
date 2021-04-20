@@ -12,6 +12,6 @@ class DayCheckJob < ApplicationJob
   private
 
   def get_unchecked_days
-    days = Day.where(status: false, date: Date.today)
+    Day.where(status: false, date: Date.today)
   end
 end
