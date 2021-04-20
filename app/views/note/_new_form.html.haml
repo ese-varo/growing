@@ -1,0 +1,16 @@
+.modal.fade#staticBackdropCreate{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#staticBackdropLabel Create a new note
+        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
+      .modal-body
+        = form_with model: Note.new, url: day_note_index_path(day), method: :post, local: false, id: 'form-note' do |form|
+          %div
+            = form.label :description, class: "form-label"
+            = form.text_field :description, class: "form-control", required: true
+          %div
+            = form.submit 'Create note', class: 'btn btn-primary my-4'
+        %small.text-muted A habit takes between 21 and 66 days to generate
+      .modal-footer
+        %button#new-note-close-btn.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close

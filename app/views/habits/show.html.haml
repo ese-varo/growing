@@ -48,33 +48,11 @@
         #day-check-container.col-sm
           = render 'days/day', day_habit: @day_habit
         #note-container.col-md-5
-          = render 'note/note', day_note: @day_note
+          = render 'note/note', day_habit: @day_habit
         #checkpoint-container.col-md-5
           = render 'checkpoint/checkpoint', day: @day_habit
 
 
     = link_to "Get back to main page", habits_path, class: 'btn btn-light mt-3'
 
-.modal.fade#staticBackdropCreate{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h5.modal-title#staticBackdropLabel Create a new note
-        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
-      .modal-body
-        = render 'form_note', note: @note
-        %small.text-muted A habit takes between 21 and 66 days to generate
-      .modal-footer
-        %button#close-btn-add.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
 
-.modal.fade#staticBackdropEdit{ 'data-bs-backdrop': "static", 'data-bs-keyboard':"false", 'tabindex': "-1", 'aria-labelledby': "staticBackdropLabel", 'aria-hidden': "true" }
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h5.modal-title#staticBackdropLabel Edit note
-        %button.btn-close{ 'type': "button", 'data-bs-dismiss': "modal", 'aria-label': "Close" }
-      .modal-body
-        = render 'form_edit_note', note: @note
-        %small.text-muted A habit takes between 21 and 66 days to generate
-      .modal-footer
-        %button#close-btn-edit.btn.btn-secondary{ 'type':"button", 'data-bs-dismiss': "modal"} Close
