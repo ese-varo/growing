@@ -1,7 +1,0 @@
-= form_with id: 'form-edit-note', method: :put do |form|
-  %div
-    = form.label :description, class: "form-label"
-    = form.text_field :description, class: "form-control", required: true
-    = form.hidden_field :notebale, value: @day_habit, class: "form-control"
-  %div
-    = form.submit 'Edit note', class: 'btn btn-primary my-4'

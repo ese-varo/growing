@@ -1,2 +1,2 @@
-document.getElementById("note-description").innerText = "<%= @note.description %>";
-document.getElementById("close-btn-edit").click();
+document.getElementById("edit-note-close-btn").click();
+document.getElementById("note-container").innerHTML = "<%= j render 'note/note', day_habit: @day %>";

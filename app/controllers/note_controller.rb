@@ -1,28 +1,22 @@
 class NoteController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! 
 
   def create
-    @day_habit = Day.find(params[:day_id])
-    @note = Note.create(description: params[:description], noteable: @day_habit)
+    @day = Day.find(params[:day_id])
+    @note = Note.create(note_params)
     if @note.valid?
-      flash[:success] = "Note saved"
-      respond_to do |format|
-        format.js
-      end
+      respond_to :js
     else 
       flash[:danger] = "Note not saved"
-      redirect_to habit_path(@day_habit.habit_id)
+      redirect_to habit_path(@day.habit_id)
     end
   end
 
   def update
     @note = Note.find(params[:id])
-    @note.description = params[:description]
-    if @note.save
-      flash[:success] = "Note updated"
-      respond_to do |format|
-        format.js
-      end
+    if @note.update(note_update_params)
+      @day = Day.find(@note.noteable.id)
+      respond_to :js
     else 
       flash[:danger] = "Note not updated"
       redirect_to habits_path
@@ -36,5 +30,14 @@ class NoteController < ApplicationController
       habit_id = @note.noteable.habit_id
       redirect_to habit_path(habit_id)
     end
+  end
+
+  private
+  def note_params
+    params.require(:note).permit(:description).merge(noteable: @day)
+  end
+
+  def note_update_params
+    params.require(:note).permit(:description)
   end
 end

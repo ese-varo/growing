@@ -1,8 +1,18 @@
-- if day_note
-  %div{:class => "card text-dark bg-transparent mb-3 border-warning"}
-- else
-  %div{:class => "card text-dark bg-transparent mb-3 border-info"}
-
-    .card-header.bg-transparent Note
-    #note.card-body
-      %p#note-description #{day_note ? day_note.description : 'You don\'t have a note yet'}
+- note = day_habit.nil? ? nil : day_habit.note
+- color = note ? 'warning' : 'info'
+%div{:class => "card text-dark bg-transparent mb-3 border-#{color}"}
+  .card-header.bg-transparent Note
+  .card-body
+    - if note.blank?
+      %p.card-text You don't have a note yet
+      %button{type: 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdropCreate', class: 'btn btn-primary btn-sm' }
+        Create a note for today
+    - else
+      %h5.card-title= note.description
+      %button{'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdropEdit', class: "btn btn-danger btn-sm"}
+        Edit note
+      = link_to 'Delete note', note_path(note), method: :delete, remote: true, class: "btn btn-warning btn-sm"
+- if day_habit
+  = render 'note/new_form', day: day_habit
+- if note
+  = render 'note/edit_form', day: day_habit

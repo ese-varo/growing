@@ -1,31 +1,8 @@
-document.getElementById("add-note-btn").remove();
-document.getElementById("note-description").innerText = "<%= @note.description %>";
-document.getElementById("note").appendChild(editButtonNote());
-document.getElementById("note").appendChild(deleteButtonNote());
-document.getElementById("close-btn-add").click();
-formEditNote = document.getElementById("form-edit-note");
-formEditNote.action = '/days/' + "<%= @day_habit.id %>" + "/note/" + "<%= @note.id if @note %>";
-formEditNote.setAttribute('data-remote', true);
-div = document.createElement('div');
-div.className = "had-note";
-document.getElementById("day-<%= @day_habit.id %>").appendChild(div);
-
-function editButtonNote() { 
-  let button = document.createElement("button");
-  button.id = "edit-note-btn"
-  button.className = "btn btn-secondary btn-sm mb-1";
-  button.setAttribute('data-bs-toggle', "modal");
-  button.setAttribute('data-bs-target', "#staticBackdropEdit");
-  button.innerText = "Edit the note";
-  return button;
-}
-
-function deleteButtonNote() { 
-  let button = document.createElement("a");
-  button.id = "delete-note-btn"
-  button.className = "btn btn-danger btn-sm";
-  button.innerText = "Delete the note";
-  button.href = "/note/" + "<%= @note.id if @note %>";
-  button.setAttribute("data-method", "delete");
-  return button;
-}
+document.getElementById('new-note-close-btn').click();
+document.getElementById('note-container').innerHTML = "<%= j render 'note/note', day_habit: @day %>";
+noteIdentifier = document.createElement('div');
+noteIdentifier.className = 'had-note';
+noteIdentifier.setAttribute('data-bs-toggle', 'tooltip');
+noteIdentifier.setAttribute('data-bs-placement', 'bottom');
+noteIdentifier.setAttribute('title', 'You have a note');
+document.getElementById("day-<%= @day.id %>").appendChild(noteIdentifier);
