@@ -1,7 +1,7 @@
 class CheckpointController < ApplicationController
   before_action :set_day, only: %i[create update]
   before_action :set_habit, only: :update
-  before_action :set_checkpoint, only: %i[update destroy]
+  before_action :set_checkpoint, only: %i[update destroy toggle_status]
 
   def new
   end
@@ -28,6 +28,15 @@ class CheckpointController < ApplicationController
     @day = Day.find(@checkpoint.day_id)
     @checkpoint.destroy
     respond_to :js
+  end
+
+  def toggle_status
+    @checkpoint.toggle_status
+    if @checkpoint.save
+      respond_to :js
+    else
+      redirect_to @checkpoint.habit, danger: "Checkpoint wasn't checked correctly"
+    end
   end
 
   private
