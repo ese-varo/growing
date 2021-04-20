@@ -1,11 +1,13 @@
 .col-xs-12.col-sm-6
   .card
-    .card-body
+    .card-body.pb-0.position-relative
       %h5.card-title= habit.name
       %p.card-text
         %strong Start date:
         = habit.start_date
+      =link_to '', habit, id: "link-habit-#{habit.id}", class: 'stretched-link'  
+    .card-body.pt-0
       %p.m-0
         %strong Checkpoints:
       %div.d-flex.overflow-auto
-        =link_to '', habit, id: "link-habit-#{habit.id}", class: 'stretched-link'
+        = render 'timeline', habit: habit
