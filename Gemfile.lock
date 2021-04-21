@@ -349,6 +349,7 @@ DEPENDENCIES
   faker (~> 2.16)
   haml (~> 5.2, >= 5.2.1)
   jbuilder (~> 2.7)
+  launchy
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)

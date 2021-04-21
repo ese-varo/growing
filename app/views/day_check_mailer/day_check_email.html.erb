@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @user.first_name %>!</p>
+    <p>
+    Hey! it's time to check your habit
+    <br>
+    --------------------------
+    </p>
+    <p>Name: <%= @habit.name %></p>
+    <p>Description: <%= @habit.description %></p>
+    <p>Start date: <%= @habit.start_date.to_s(:long) %></p>
+    <p>End date: <%= @habit.end_date.to_s(:long) %></p>
+    <p>Note: <%= @day_habit.note ? @day_habit.note : "No notes for this day" %></p>
+    <br>
+    ----------
+    </p>
+    <p>Link to your habit: <%= link_to "Habit", habit_url(@habit) %></p>
+  </body>
+</html>
