@@ -6,6 +6,10 @@ class Habit < ApplicationRecord
   has_many :checkpoints, dependent: :delete_all
   validates :name, :description, :start_date, :end_date, presence: true
 
+  def self.expired_within_last_five_days
+    where(end_date: (Date.today - 4.days)..Date.today)
+  end
+
   def days_order_by_date
     days.order('date ASC')
   end
