@@ -1,5 +1,4 @@
 class DayCheckMailer < ApplicationMailer
-  default from: "from@example.com"
   
   def day_check_email
     @day_habit = params[:day_habit]

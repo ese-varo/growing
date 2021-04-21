@@ -1,5 +1,4 @@
 class HabitReminderMailer < ApplicationMailer
-  default from: 'from@example.com'
 
   def habit_expired_reminder
     @habit = params[:habit]

@@ -1,5 +1,4 @@
 class HabitMailer < ApplicationMailer
-  default from: 'from@example.com'
 
   def habit_last_day
     @habit = params[:habit]
