@@ -1,0 +1,13 @@
+%h1 Last day of Habit
+%p
+  = "Hi #{@user.first_name} this is a reminder for your habit that ends today\n"
+  This are the habit details:
+
+%h3 Habit
+%p= "Name: #{@habit.name}"
+%p= "Description: #{@habit.description}"
+
+%p
+  To mark it as achieved or not, follow this link:&nbsp;
+  = link_to 'check habit', @url
+%p Just remember to keep growing and have a good day!

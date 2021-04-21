@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   get 'checkpoint_toggle/:id', to: 'checkpoint#toggle_status', as: 'checkpoint_toggle'
   resources :note, only: %i[destroy]
+  get 'habit_toggle/:id', to: 'habits#toggle_status', as: 'habit_toggle'
 end

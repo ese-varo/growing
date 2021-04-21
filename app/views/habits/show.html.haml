@@ -17,6 +17,14 @@
       %button.btn.btn-primary.ml-auto{ 'type': 'button', 'data-bs-toggle': 'modal', 'data-bs-target': '#staticBackdrop'} Edit Habit
 
     %h6.card-subtitle.mb-2.text-muted= @habit.description
+    - if @habit.able_to_be_checked?
+      .check_habit.my-4
+        - if @habit.status
+          %p.text-success This habit has been generated 
+          = link_to 'Habit as not Achieved', habit_toggle_path(@habit), class: 'btn btn-primary btn-sm'
+        - else
+          %p.text-danger This habit hasn't been generated!
+          = link_to 'Habit as Achieved', habit_toggle_path(@habit), class: 'btn btn-success btn-sm'
     .row.mt-4
       %p.col-6.text-center= "Start: #{@habit.start_date_format}"
       %p.col-6.text-center= "End: #{@habit.end_date_format}"
